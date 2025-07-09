@@ -1,0 +1,29 @@
+{
+  "name": "learning-react",
+  "version": "1.0.0",
+  "description": "Repo created to help in my React study.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/telosgm1990/learning-react.git"
+  },
+  "keywords": [
+    "react",
+    "scrimba",
+    "javascript",
+    "typescript"
+  ],
+  "author": "Telos Galante Mancera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/telosgm1990/learning-react/issues"
+  },
+  "homepage": "https://github.com/telosgm1990/learning-react#readme",
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
