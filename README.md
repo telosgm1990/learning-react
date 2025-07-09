@@ -82,4 +82,8 @@ Access to script at 'file:///C:/.../learning-react/index.jsx' from origin 'null'
 npx create-react-router@latest
 ```
 
+> **INFO:** The command opens a prompt with some steps to create the project. I've used the default values and a project folder was create at `./my-react-router-app`.
+
 - With this command discovered about the `npx` and the its difference to `npm` command;<sup>[7](#2-references)</sup>
+- I've decided to come back to scrimba, lets work with project later. Probably they will show how to work locally;
+
