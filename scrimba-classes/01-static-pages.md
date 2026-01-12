@@ -9,6 +9,7 @@
 5. https://stackoverflow.com/a/56121123/26058659
 6. https://react.dev/learn/creating-a-react-app#react-router-v7
 7. https://www.freecodecamp.org/news/npm-vs-npx-whats-the-difference/
+8. https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
 
 ## 2. Notes
 
@@ -97,7 +98,7 @@ npm run dev
 
 ### 2.7. React.createElement()
 
-- The way he showed the root.render function, passing an html statement directly to it, it's kinda a ney thing in React. At the begining, the way to create an document element was using `createElement` function from `"react"` lib. 
+- The way he showed the root.render function, passing an html statement directly to it, it's kinda a new thing in React. At the begining, the way to create an document element was using `createElement` function from `"react"` lib. 
 - This function receives three parameters:
   - The type of element;
   - Props
@@ -138,4 +139,103 @@ const reactElement = createElement("h1", null, createElement("span", null, "I'm 
 
 ```js
 const reactElement = <h1><span>"I'm inside the span"</span></h1>
+```
+
+### 2.9. Why React? It's Composable!
+
+- Talking about reusability, the narrator showed an example of navigation bar using bootstrap lib. If you need to reuse the bar in several pages (in different .html files) you need to copy-and-paste the bar's code in each one of them.
+- Using components you can create a custom html tag (or custom component) and reuse it through your code. The component encapsulates the code you want and you just need use the tag for replicate your piece of code.
+- To create a new component you just need to create a fuction called with the name you want to component, and this function must return the JSX element you want in HTML, for example:
+
+```js
+function MyComponent() {
+    return <h1>Some header</h1>
+}
+
+root.render(
+    // ...
+    <MyComponent />
+    // ...
+)
+```
+
+### 2.10. Why React? It's Declarative!
+
+- It's showed the difference between declarative vs imperative:
+  - Declarative: says what is need to be done
+  - Imperative: says how it is need to be done
+
+- It gave us a challenge to append an h1 element to root div, using the vanilla JS functions. To do that i used the `document.createElement` function <sup>[8](#1-references)</sup>
+
+```js
+const rootElement = document.getElementById("root")
+const headerElement = document.createElement("h1")
+
+headerElement.className = "header"
+rootElement.appendChild(headerElement)
+
+const headerContent = document.createTextNode("Hello, React!")
+
+headerElement.appendChild(headerContent)
+```
+
+- ...Proposed solution:
+
+```js
+const h1 = document.createElement("h1")
+h1.textContent = "This is imperative coding"
+h1.className = "header"
+document.getElementById("root").appendChild(h1)
+```
+
+- This contranst with the React works, once you just say to the lib what needs to be done, and it renders what you ask:
+
+```js
+import { createRoot } from "react-dom/client"
+const root = createRoot(document.getElementById("root"))
+
+root.render(
+    <h1 className="header">Hello, React!</h1>
+)
+```
+
+### 2.11. Random housekeeping
+
+- If you change the script tag in .html file to use "index.js" instead of "index.jsx" the code still works. Howerver, once we use Vite under the hood, his document recomment using `.jsx` any time a React-specific syntax is used, for "performance" purposes. Not performance exactly, but Vite will work "smootthly" this way, like the narrator said;
+- He talked about some possible problems with image relative paths, specially when running code outside scrimba. He suggests to use absolute paths to image like this:
+
+```js
+root.render(
+    <img src="/src/assets/react-logo.png" />
+)
+```
+- Another point he showed to housekeeping is about rendering multiple element. When you try to do this:
+
+```js
+root.render(
+    <img src="/src/assets/react-logo.png" />
+    <h1>This is another element</h1>
+)
+
+```
+
+- ... It is like the same thing doing this:
+
+```js
+import { createElement } from "react"
+
+// ...
+
+createElement()createElement()
+```
+
+- ...So to create multiple elements he suggests to put all ement into a unique `<div>` (or any other tag) element, like this:
+
+```js
+root.render(
+    <div>
+        <img src="/src/assets/react-logo.png" />
+        <h1>This is another element</h1>
+    </div>
+)
 ```
